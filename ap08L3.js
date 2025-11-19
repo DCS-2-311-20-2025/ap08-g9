@@ -1,7 +1,7 @@
 //
 // 応用プログラミング 第8回 (ap08L3.js)
 //
-// G48400-2024 拓殖太郎
+// G48486-2024 中村雪乃
 //
 
 "use strict"; // 厳格モード
@@ -19,6 +19,8 @@ let course;
 export const origin = new THREE.Vector3();
 export const controlPoints = [
     [-25,-40],
+    [-10,-25],
+    [0,10],
     [ 50, 20]
 ]
 export function init(scene, size, id, offset, texture) {
@@ -48,6 +50,33 @@ export function init(scene, size, id, offset, texture) {
     // ビル
 
     // コース(描画)
+    course=new THREE.CatmullRomCurve3(
+        controlPoints.map((p)=>{
+            return (new THREE.Vector3()).set(
+                offset.x+p[0],
+                0,
+                offset.z+p[1]
+            );
+        }),false
+    )
+    //曲線から１００箇所を取り出し,円を並べる
+    const points=course.getPoints(100);
+    points.forEach((point)=>{
+        const road=new THREE.Mesh(
+            new THREE.CircleGeometry(5,16),
+            new THREE.MeshLambertMaterial({
+                color:"gray",
+            })
+        )
+        road.rotateX(-Math.PI/2);
+        road.position.set(
+            point.x,
+            0,
+            point.z
+        );
+        scene.add(road);
+    })
+
 
 }
 
