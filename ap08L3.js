@@ -74,11 +74,11 @@ export function init(scene, size, id, offset, texture) {
         bldg.position.set(x,bldgH,z);
         scene.add(bldg);
     }
-    makeBuilding(10,20,3);
-    makeBuilding(20,25,3);
-    makeBuilding(45,60,3);
-    makeBuilding(0,10,3);
-    makeBuilding(15,10,3);
+    makeBuilding(30,0,3);
+    makeBuilding(10,40,3);
+    makeBuilding(0,15,3);
+    //makeBuilding(0,10,3);
+    //makeBuilding(-15,-10,3);
 
     // コース(描画)
     course=new THREE.CatmullRomCurve3(
