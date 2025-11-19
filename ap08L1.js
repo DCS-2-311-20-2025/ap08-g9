@@ -12,6 +12,7 @@ import * as L1 from "./ap08L1.js";
 import * as L2 from "./ap08L2.js";
 import * as L3 from "./ap08L3.js";
 import * as L4 from "./ap08L4.js";
+import GUI from "ili-gui";
 
 let renderer;
 let camera;
@@ -78,8 +79,9 @@ export function init(scene, size, id, offset, texture) {
         bldg.position.set(x, bldgH/2, z);
         scene.add(bldg);
     }
-    makeBuilding(50,-40,2);
-    makeBuilding(90,0, 3);
+    makeBuilding(50, -40, 2);
+    makeBuilding(90, 0, 3);
+    makeBuilding(85, 20, 0);
 
     // コース(描画)
     course = new THREE.CatmullRomCurve3(
@@ -163,3 +165,5 @@ export function render(scene, car) {
     camera.lookAt(car.position.x, car.position.y, car.position.z);
     renderer.render(scene, camera);
 }
+
+
