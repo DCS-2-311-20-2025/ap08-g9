@@ -22,7 +22,7 @@ export const controlPoints = [
     [ 40,-10],
     [ 30,-20],
     [ 15,  0],
-    [  0, 30],
+    [  10, 30],
     [-40, 20],
     [-50,-20]
 ]
@@ -83,6 +83,13 @@ export function init(scene, size, id, offset, texture) {
 
 // コース(自動運転用)
 export function makeCourse(scene) {
+    const courseVectors = [];
+    const parts = [L1, L2, L3, L4];
+    parts.forEach((part) => {
+        part.controlPoints.forEach((p) => {
+
+        })
+    })
 }
 
 // カメラを返す
@@ -106,7 +113,15 @@ export function resize() {
 }
 
 // 描画処理
+const clock = new THREE.Clock();
+const carPosition = new THREE.Vector3();
+const carTarget = new THREE.Vector3();
 export function render(scene, car) {
+    const time = (clock.getElapsedTime() / 20);
+    course.getPointAt(time % 1, carPosition);
+    car.position.copy(carPosition);
+    course.getPointAt((time + 0.01) % 1, carTarget);
+    car.lookAt(carTarget);
     camera.lookAt(car.position.x, car.position.y, car.position.z);
     renderer.render(scene, camera);
 }
