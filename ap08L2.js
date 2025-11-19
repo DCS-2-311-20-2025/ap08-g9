@@ -19,10 +19,8 @@ let course;
 export const origin = new THREE.Vector3();
 export const controlPoints = [
     [ 50,-20],
-    [  0,  0],
-    [  0, 60],
-    [-40, 70],
-    [-35, 30],
+    [  0,-10],
+    [-10,  0],
     [-25, 40]
 ]
 export function init(scene, size, id, offset, texture) {
@@ -74,11 +72,13 @@ export function init(scene, size, id, offset, texture) {
             geometry,
             material
         )
-        bldg.position.set(x, bldgH, type)
+        bldg.position.set(x, bldgH, z)
         scene.add(bldg);
     }
-    makeBuilding(20, 20, 0);
-    makeBuilding(-65, 35, 0);
+    makeBuilding(-60, -30, 1);
+    makeBuilding(10, 20, 2);
+    makeBuilding(-30, 30, 3);
+    makeBuilding(-55, 40, 4);
 
     // コース(描画)
     course = new THREE.CatmullRomCurve3 (
